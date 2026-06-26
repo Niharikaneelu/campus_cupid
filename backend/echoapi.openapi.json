@@ -1,0 +1,440 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Campus Cupid API",
+    "version": "1.0.0",
+    "description": "API contract for the Campus Cupid backend. Import this into EchoAPI to create and test requests."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Local backend server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "AuthRegisterRequest": {
+        "type": "object",
+        "required": ["name", "email", "password"],
+        "properties": {
+          "name": { "type": "string", "example": "Aanya" },
+          "email": { "type": "string", "format": "email", "example": "aanya@example.com" },
+          "password": { "type": "string", "example": "secret123" }
+        }
+      },
+      "AuthLoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": { "type": "string", "format": "email", "example": "aanya@example.com" },
+          "password": { "type": "string", "example": "secret123" }
+        }
+      },
+      "TokenResponse": {
+        "type": "object",
+        "properties": {
+          "user": { "$ref": "#/components/schemas/UserResponse" },
+          "token": { "type": "string", "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "email": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "profile": { "$ref": "#/components/schemas/Profile" },
+          "likesGivenCount": { "type": "integer" },
+          "matchesCount": { "type": "integer" }
+        }
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "displayName": { "type": "string" },
+          "headline": { "type": "string" },
+          "bio": { "type": "string" },
+          "university": { "type": "string" },
+          "location": { "type": "string" },
+          "genderIdentity": { "type": "string" },
+          "pronouns": { "type": "string" },
+          "interestedIn": { "type": "string" },
+          "interests": { "type": "string" },
+          "photoUrl": { "type": "string" },
+          "visibility": { "type": "boolean" },
+          "preferences": {
+            "type": "object",
+            "properties": {
+              "showAge": { "type": "boolean" },
+              "showDistance": { "type": "boolean" },
+              "profileVisible": { "type": "boolean" },
+              "matchAlerts": { "type": "boolean" },
+              "messageAlerts": { "type": "boolean" },
+              "emailDigest": { "type": "boolean" }
+            }
+          }
+        }
+      },
+      "UpdateProfileRequest": {
+        "type": "object",
+        "properties": {
+          "displayName": { "type": "string" },
+          "headline": { "type": "string" },
+          "bio": { "type": "string" },
+          "university": { "type": "string" },
+          "location": { "type": "string" },
+          "genderIdentity": { "type": "string" },
+          "pronouns": { "type": "string" },
+          "interestedIn": { "type": "string" },
+          "interests": { "type": "string" },
+          "photoUrl": { "type": "string" },
+          "visibility": { "type": "boolean" },
+          "preferences": {
+            "type": "object",
+            "properties": {
+              "showAge": { "type": "boolean" },
+              "showDistance": { "type": "boolean" },
+              "profileVisible": { "type": "boolean" },
+              "matchAlerts": { "type": "boolean" },
+              "messageAlerts": { "type": "boolean" },
+              "emailDigest": { "type": "boolean" }
+            }
+          }
+        }
+      },
+      "PublicProfile": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "email": { "type": "string" },
+          "headline": { "type": "string" },
+          "bio": { "type": "string" },
+          "university": { "type": "string" },
+          "location": { "type": "string" },
+          "genderIdentity": { "type": "string" },
+          "pronouns": { "type": "string" },
+          "interestedIn": { "type": "string" },
+          "interests": { "type": "string" },
+          "photoUrl": { "type": "string" },
+          "visibility": { "type": "boolean" }
+        }
+      },
+      "SwipeRequest": {
+        "type": "object",
+        "required": ["targetUserId", "action"],
+        "properties": {
+          "targetUserId": { "type": "string" },
+          "action": { "type": "string", "enum": ["like", "dislike"] }
+        }
+      },
+      "MatchSummary": {
+        "type": "object",
+        "properties": {
+          "threadId": { "type": "string" },
+          "counterpart": { "$ref": "#/components/schemas/PublicProfile" },
+          "lastMessage": { "$ref": "#/components/schemas/ChatMessage" },
+          "messageCount": { "type": "integer" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "ChatMessage": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string" },
+          "senderId": { "type": "string" },
+          "isMine": { "type": "boolean" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "SendMessageRequest": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "example": "Hi, how was your day?" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "Service is healthy"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Register a new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AuthRegisterRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TokenResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Sign in",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AuthLoginRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TokenResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "summary": "Get signed-in user",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Current user",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "Get profile",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Profile data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Profile" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update profile",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateProfileRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profiles/discover": {
+      "get": {
+        "summary": "List discoverable profiles",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Profiles available for discovery",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "profiles": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/PublicProfile" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/swipes": {
+      "post": {
+        "summary": "Record like or dislike",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SwipeRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Swipe recorded"
+          }
+        }
+      }
+    },
+    "/matches": {
+      "get": {
+        "summary": "List matches",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Match list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "matches": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/PublicProfile" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chats": {
+      "get": {
+        "summary": "List chat threads",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Chat threads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "threads": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/MatchSummary" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chats/{matchId}/messages": {
+      "get": {
+        "summary": "Get messages for a chat thread",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "matchId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Chat messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "threadId": { "type": "string" },
+                    "counterpart": { "$ref": "#/components/schemas/PublicProfile" },
+                    "messages": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/ChatMessage" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Send a message",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "matchId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SendMessageRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Message sent"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Log out",
+        "responses": {
+          "200": {
+            "description": "Logged out"
+          }
+        }
+      }
+    }
+  }
+}

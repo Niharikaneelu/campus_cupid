@@ -1,0 +1,812 @@
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  padding: 3rem;
+  background:
+    radial-gradient(circle at top left, rgba(255, 182, 193, 0.78), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 92, 117, 0.2), transparent 26%),
+    linear-gradient(135deg, #fff5f7 0%, #ffe4ea 48%, #ffffff 100%);
+  color: #561824;
+}
+
+.hero-panel,
+.auth-card,
+.dashboard-card {
+  border: 1px solid rgba(224, 60, 92, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 28px 80px rgba(233, 68, 98, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.hero-panel {
+  border-radius: 28px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.brand-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff8ea3 0%, #ff5c75 100%);
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.hero-panel h1,
+.auth-card h2,
+.dashboard-card h2 {
+  margin: 0;
+  line-height: 1.04;
+}
+
+.hero-panel h1 {
+  font-size: clamp(2.6rem, 7vw, 5.4rem);
+  max-width: 10ch;
+}
+
+.hero-panel p,
+.dashboard-card p {
+  margin: 0;
+  max-width: 34rem;
+  color: rgba(86, 24, 36, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.feature-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: rgba(86, 24, 36, 0.86);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.auth-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card,
+.dashboard-card {
+  width: min(100%, 31rem);
+  border-radius: 28px;
+  padding: 2rem;
+}
+
+.tab-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding: 0.35rem;
+  border-radius: 18px;
+  background: rgba(255, 92, 117, 0.08);
+}
+
+.tab-button,
+.primary-button,
+.secondary-button {
+  border: 0;
+  border-radius: 14px;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.tab-button {
+  padding: 0.85rem 1rem;
+  background: transparent;
+  color: rgba(86, 24, 36, 0.78);
+  font-weight: 600;
+}
+
+.tab-button.active {
+  background: linear-gradient(135deg, #ff5c75 0%, #ff9aa9 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(255, 92, 117, 0.26);
+}
+
+.auth-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: #561824;
+  font-weight: 600;
+}
+
+.auth-form input {
+  border: 1px solid rgba(224, 60, 92, 0.18);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #561824;
+  font: inherit;
+}
+
+.auth-form input::placeholder {
+  color: rgba(86, 24, 36, 0.4);
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: rgba(255, 92, 117, 0.9);
+  box-shadow: 0 0 0 3px rgba(255, 92, 117, 0.16);
+}
+
+.form-message {
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+}
+
+.form-message.error {
+  background: rgba(255, 93, 117, 0.12);
+  color: #a61e36;
+}
+
+.form-message.success {
+  background: rgba(255, 214, 221, 0.9);
+  color: #8c1830;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 0.95rem 1.2rem;
+  font-weight: 700;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #ff5c75 0%, #ff8ea3 100%);
+  color: #ffffff;
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.96);
+  color: #8c1830;
+  border: 1px solid rgba(224, 60, 92, 0.18);
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+}
+
+.auth-submit {
+  width: 100%;
+}
+
+.demo-note {
+  margin-top: 1rem;
+  color: rgba(86, 24, 36, 0.72);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 0.9rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 214, 221, 0.9);
+  color: #a61e36;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.main-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at top left, rgba(255, 182, 193, 0.9), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(255, 92, 117, 0.18), transparent 24%),
+    linear-gradient(135deg, #fff8fa 0%, #ffffff 52%, #ffe8ee 100%);
+  color: #561824;
+}
+
+.sidebar-panel,
+.content-panel {
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(224, 60, 92, 0.12);
+  box-shadow: 0 28px 80px rgba(233, 68, 98, 0.1);
+}
+
+.sidebar-panel {
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.profile-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 22px;
+  background: rgba(255, 92, 117, 0.06);
+}
+
+.profile-summary h2,
+.topbar h1,
+.deck-card h2,
+.match-card h3,
+.sidebar-card h3,
+.profile-overview-card h2,
+.profile-edit-card h3 {
+  margin: 0;
+}
+
+.profile-summary p,
+.sidebar-card p,
+.suggestion-card p,
+.match-card p,
+.message-thread p,
+.profile-overview-card p {
+  margin: 0.25rem 0 0;
+  color: rgba(86, 24, 36, 0.72);
+}
+
+.avatar-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #ff5c75 0%, #ff9aa9 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.avatar-mark.small {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  font-size: 1rem;
+}
+
+.main-nav {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.main-nav-button,
+.filter-pill,
+.dislike-button,
+.like-button {
+  border: 1px solid rgba(224, 60, 92, 0.14);
+  background: rgba(255, 255, 255, 0.92);
+  color: #8c1830;
+  border-radius: 16px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.main-nav-button {
+  text-align: left;
+  padding: 0.9rem 1rem;
+}
+
+.main-nav-button.active,
+.filter-pill:hover,
+.main-nav-button:hover {
+  background: linear-gradient(135deg, #ff5c75 0%, #ff9aa9 100%);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(255, 92, 117, 0.18);
+}
+
+.sidebar-card {
+  padding: 1rem;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 214, 221, 0.72), rgba(255, 255, 255, 0.9));
+}
+
+.content-panel {
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.eyebrow,
+.mini-text,
+.match-card small,
+.suggestion-card small {
+  margin: 0;
+  color: rgba(140, 24, 48, 0.65);
+  font-size: 0.9rem;
+}
+
+.topbar h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  max-width: 14ch;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-pill,
+.dislike-button,
+.like-button {
+  padding: 0.75rem 1rem;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 1.25rem;
+}
+
+.deck-card,
+.suggestion-card,
+.match-card,
+.message-thread,
+.profile-overview-card,
+.profile-edit-card {
+  border-radius: 24px;
+  border: 1px solid rgba(224, 60, 92, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 40px rgba(233, 68, 98, 0.08);
+}
+
+.deck-card {
+  padding: 1.25rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.deck-header,
+.suggestion-head,
+.thread-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.profile-card-large {
+  border-radius: 28px;
+  padding: 1rem;
+  background: linear-gradient(180deg, #fff0f4 0%, #ffffff 100%);
+  border: 1px solid rgba(224, 60, 92, 0.14);
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-photo-placeholder {
+  min-height: 18rem;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  font-size: 5rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(135deg, #ff5c75 0%, #ffb2c0 100%);
+}
+
+.profile-card-copy {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.profile-card-copy h2 {
+  font-size: 1.6rem;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-row span {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 92, 117, 0.08);
+  color: #8c1830;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.dislike-button {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.like-button {
+  background: linear-gradient(135deg, #ff5c75 0%, #ff8ea3 100%);
+  color: #fff;
+}
+
+.stack-column,
+.matches-grid,
+.profile-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.suggestion-card,
+.match-card,
+.profile-overview-card,
+.profile-edit-card {
+  padding: 1rem;
+}
+
+.suggestion-card {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.match-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.messages-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.message-thread {
+  padding: 1rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.chat-bubble {
+  max-width: 75%;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  line-height: 1.5;
+}
+
+.chat-bubble.incoming {
+  background: #fff0f4;
+  color: #561824;
+  justify-self: start;
+}
+
+.chat-bubble.outgoing {
+  background: linear-gradient(135deg, #ff5c75 0%, #ff9aa9 100%);
+  color: #fff;
+  justify-self: end;
+}
+
+.chat-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+}
+
+.chat-input-row input,
+.profile-edit-card textarea {
+  width: 100%;
+  border: 1px solid rgba(224, 60, 92, 0.16);
+  border-radius: 16px;
+  padding: 0.95rem 1rem;
+  background: #fff;
+  color: #561824;
+  font: inherit;
+}
+
+.profile-grid {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+}
+
+.profile-overview-card,
+.profile-edit-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-overview-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.profile-metrics div {
+  padding: 0.85rem;
+  border-radius: 18px;
+  background: rgba(255, 92, 117, 0.08);
+  display: grid;
+  gap: 0.2rem;
+}
+
+.profile-metrics strong {
+  font-size: 1.5rem;
+  color: #8c1830;
+}
+
+.profile-metrics span {
+  color: rgba(86, 24, 36, 0.72);
+  font-size: 0.9rem;
+}
+
+.profile-card-heading {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.profile-card-heading p {
+  margin: 0;
+  color: rgba(86, 24, 36, 0.72);
+}
+
+.profile-summary-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.profile-summary-tags span {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 92, 117, 0.08);
+  color: #8c1830;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.profile-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.profile-field {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 600;
+}
+
+.profile-field span {
+  color: #561824;
+}
+
+.profile-field input,
+.profile-field textarea {
+  width: 100%;
+  border: 1px solid rgba(224, 60, 92, 0.16);
+  border-radius: 16px;
+  padding: 0.95rem 1rem;
+  background: #fff;
+  color: #561824;
+  font: inherit;
+}
+
+.profile-field textarea {
+  resize: vertical;
+}
+
+.settings-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.gender-spec-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 24px;
+  border: 1px solid rgba(224, 60, 92, 0.12);
+  background: linear-gradient(180deg, rgba(255, 240, 244, 0.92), rgba(255, 255, 255, 0.98));
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.setting-toggle {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(224, 60, 92, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.setting-toggle.active {
+  background: linear-gradient(180deg, rgba(255, 214, 221, 0.75), rgba(255, 255, 255, 0.95));
+}
+
+.setting-toggle strong {
+  display: block;
+  color: #561824;
+}
+
+.setting-toggle p {
+  margin: 0.2rem 0 0;
+  color: rgba(86, 24, 36, 0.72);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.setting-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff5c75;
+}
+
+.photo-uploader-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 24px;
+  border: 1px solid rgba(224, 60, 92, 0.12);
+  background: linear-gradient(180deg, rgba(255, 240, 244, 0.95), rgba(255, 255, 255, 0.98));
+}
+
+.photo-uploader-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.photo-uploader-copy p {
+  margin: 0;
+  color: rgba(86, 24, 36, 0.72);
+}
+
+.photo-preview-frame {
+  min-height: 14rem;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255, 92, 117, 0.08);
+  display: grid;
+  place-items: center;
+  color: rgba(86, 24, 36, 0.65);
+  border: 1px dashed rgba(224, 60, 92, 0.2);
+}
+
+.photo-preview-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-upload-button {
+  display: grid;
+  position: relative;
+}
+
+.photo-upload-button input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.profile-actions-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.profile-edit-card label {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.profile-edit-card textarea {
+  resize: vertical;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+  }
+
+  .hero-panel {
+    padding: 1.75rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .auth-card,
+  .dashboard-card,
+  .hero-panel {
+    border-radius: 22px;
+  }
+
+  .auth-card,
+  .dashboard-card {
+    padding: 1.25rem;
+  }
+
+  .main-shell {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .main-grid,
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-fields-grid,
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar-actions,
+  .chat-input-row,
+  .action-row {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-actions-row {
+    justify-content: stretch;
+  }
+
+  .profile-actions-row > * {
+    width: 100%;
+  }
+}

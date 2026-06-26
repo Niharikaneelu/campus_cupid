@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Campus Cupid
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository is organized as a small workspace:
 
-## Available Scripts
+- [frontend](frontend) - React app
+- [backend](backend) - Node auth, profile, and matching API
 
-In the project directory, you can run:
+## From the repository root
 
-### `npm start`
+Use these scripts from the top level:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install
+npm start
+npm test
+npm run build
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+These commands proxy into the frontend app inside [frontend](frontend).
 
-### `npm test`
+## Folder Notes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- The React app still keeps its own package file at [frontend/package.json](frontend/package.json).
+- The root [package.json](package.json) is the workspace entry point.
+- The [backend](backend) folder now serves authentication, profile, discovery, swipe, and match routes.
 
-### `npm run build`
+## Backend Routes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `GET /health`
+- `POST /auth/register`
+- `POST /auth/login`
+- `GET /auth/me`
+- `GET /profile`
+- `PUT /profile`
+- `GET /profiles/discover`
+- `POST /swipes`
+- `GET /matches`
+- `GET /chats`
+- `GET /chats/:matchId/messages`
+- `POST /chats/:matchId/messages`
+- `POST /auth/logout`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## EchoAPI
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Import [backend/echoapi.openapi.json](backend/echoapi.openapi.json) into EchoAPI to create the request collection for these routes.
